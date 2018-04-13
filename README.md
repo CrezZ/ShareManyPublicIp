@@ -7,13 +7,13 @@ thereis many Public IP. I want connect to server with OpenVPN and use ONLY one I
 0. Pre. Create file ip.txt with this template:
 IP,int(opt),def_route(opt),mac(opt)__
 for example to customize out IP, out interface and outgoing gateway and link out ip to certanly interface with the MAC:<br />
-2.3.4.5,eth12,2.3.4.1,00:01:00:01:00:01__
-OR for customize out IP, out interface and outgoing gateway__
-2.3.4.5,eth12,2.3.4.1__
-OR  for customize only out IP and out interface __
-2.3.4.5,eth12__
-OR for customize only out IP__
-2.3.4.5__
+*2.3.4.5,eth12,2.3.4.1,00:01:00:01:00:01<br />
+OR for customize out IP, out interface and outgoing gateway<br />
+*2.3.4.5,eth12,2.3.4.1<br />
+OR  for customize only out IP and out interface <br />
+*2.3.4.5,eth12<br />
+OR for customize only out IP<br />
+*2.3.4.5<br />
 1. Install OpenVPN, iptables (install.sh automate all  - be carefull!)
 2. copy openvpn.conf.template to /etc/openvpn/openvpn.conf (if nessesary, EDIT this!, generate keys and certs and check paths)
 3. run init.sh. It generate init_route.sh (and del_route.sh for disabling all) and ipp.txt (for openvpn config). 
