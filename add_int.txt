@@ -1,5 +1,0 @@
-
-up addr add 78.24.218.42 dev ens3  
-up addr add 78.24.218.162 dev ens3  
-up addr add 78.24.219.237 dev ens3  
-up addr add 78.24.222.178 dev ens3  
