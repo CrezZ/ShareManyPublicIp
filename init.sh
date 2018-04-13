@@ -50,6 +50,7 @@ echo $item
     echo -e "$table,$intip" >>ipp.txt
     echo -e "ip addr del $ip dev $int " >> init_route.sh
     echo -e "ip addr add $ip dev $int " >> init_route.sh
+    echo -e "ip link set dev $int up" >> init_route.sh
     echo -e "ip rule del from $ip dev $int table $table" >> init_route.sh
     echo -e "ip rule add from $ip dev $int table $table" >> init_route.sh
     echo -e "ip rule del from $intip table $table " >> init_route.sh
