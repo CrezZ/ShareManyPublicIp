@@ -4,7 +4,7 @@ apt update
 apt install -y openvpn iptables
 tar -xvfz openvpn.tar.gz /etc
 
-./init_route.sh
+sh ./init_route.sh
 
 cp -f  ipp.txt /etc/openvpn
 cp -d init_route.sh /etc
@@ -13,7 +13,6 @@ systemctl daemon-reload
 service openvpn restart
 
 cat <<EOF >/etc/rc.local
-
 #!/bin/sh -e
 #
 # rc.local

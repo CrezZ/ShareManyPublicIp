@@ -1,17 +1,16 @@
 
-ip rule del from 78.24.218.42 dev ens3 table 100
-ip rule del from 192.168.255.100 table 100 
-ip route del default via 10.0.0.1 dev ens3 table 100 
-iptables -t nat -D POSTROUTING -s 192.168.255.100 -o ens3 -j SNAT --to-source 78.24.218.42 
-ip rule del from 78.24.218.162 dev ens3 table 101
-ip rule del from 192.168.255.101 table 101 
-ip route del default via 10.0.0.1 dev ens3 table 101 
-iptables -t nat -D POSTROUTING -s 192.168.255.101 -o ens3 -j SNAT --to-source 78.24.218.162 
-ip rule del from 78.24.219.237 dev ens3 table 102
-ip rule del from 192.168.255.102 table 102 
-ip route del default via 10.0.0.1 dev ens3 table 102 
-iptables -t nat -D POSTROUTING -s 192.168.255.102 -o ens3 -j SNAT --to-source 78.24.219.237 
-ip rule del from 78.24.222.178 dev ens3 table 103
-ip rule del from 192.168.255.103 table 103 
-ip route del default via 10.0.0.1 dev ens3 table 103 
-iptables -t nat -D POSTROUTING -s 192.168.255.103 -o ens3 -j SNAT --to-source 78.24.222.178 
+ip addr del 5.200.53.249/24 dev ens160 
+ip rule del from 5.200.53.249/24 dev ens160 table 1000
+ip rule del from 192.168.252.10 table 1000 
+ip route del default via 5.200.53.1 dev ens160 table 1000 
+iptables -t nat -D POSTROUTING -s 192.168.252.10 -o ens160 -j SNAT --to-source 5.200.53.249 
+ip addr del 5.200.53.203/24 dev ens160 
+ip rule del from 5.200.53.203/24 dev ens160 table 1001
+ip rule del from 192.168.252.11 table 1001 
+ip route del default via 5.200.53.1 dev ens160 table 1001 
+iptables -t nat -D POSTROUTING -s 192.168.252.11 -o ens160 -j SNAT --to-source 5.200.53.203 
+ip addr del 5.200.53.196/24 dev ens160 
+ip rule del from 5.200.53.196/24 dev ens160 table 1002
+ip rule del from 192.168.252.12 table 1002 
+ip route del default via 5.200.53.1 dev ens160 table 1002 
+iptables -t nat -D POSTROUTING -s 192.168.252.12 -o ens160 -j SNAT --to-source 5.200.53.196 
