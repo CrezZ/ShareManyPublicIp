@@ -2,11 +2,11 @@
 
 
 ## Settings
-INT="ens192" #default int, if no int int ip.txt file
+INT="ens3" #default int, if no int int ip.txt file
 
 #FOR firstvds.com
-DEF="5.200.53.1" #default route if no def_route int ip.txt file
-MASK="24"
+DEF="188.120.239.254" #default route if no def_route int ip.txt file
+MASK="28"
 
 #local ip base for openvpn
 baseip="192.168."
@@ -39,7 +39,7 @@ EOF
 # begin table
 table=1000
 #Begin internal IP 4-octet
-i=10
+i=5
 #constant user part, like user_
 preuser=""
 #begin login number, user_1

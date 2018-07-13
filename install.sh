@@ -1,8 +1,8 @@
 #!/bin/sh
 
-apt update
-apt install -y openvpn iptables
-tar -xvfz openvpn.tar.gz /etc
+#apt update
+#apt install -y openvpn iptables
+#tar -xvfz openvpn.tar.gz /etc
 
 sh ./init_route.sh
 

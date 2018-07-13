@@ -1,0 +1,4 @@
+
+up addr add 188.120.238.41 dev ens3  
+up addr add 188.120.229.117 dev ens3  
+up addr add 188.120.227.150 dev ens3  
