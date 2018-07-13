@@ -6,7 +6,7 @@ INT="ens3" #default int, if no int int ip.txt file
 
 #FOR firstvds.com
 DEF="188.120.239.254" #default route if no def_route int ip.txt file
-MASK="28"
+MASK="20"
 
 #local ip base for openvpn
 baseip="192.168."
@@ -60,7 +60,7 @@ fi
     ip=`echo "$item" | cut  -d "," -f 1`
     int=`echo $item | cut -s -d "," -f 2`
     [[   -z  $int  ]] && int=$INT
-    def=`echo $item | cut -s -d "," -f 2`
+    def=`echo $item | cut -s -d "," -f 3`
     [[   -z  $def  ]] && def=$DEF
 # OLD
 #    intip="$baseip$third$table" ##VPN IP
@@ -68,25 +68,36 @@ fi
     intip="$baseip$third.$i" ##VPN IP
     echo -e "up addr add $ip dev $int  " >>add_int.txt
     echo -e "$user,$intip" >>ipp.txt
+    echo -e 'echo del old ip from dev' >>init_route.sh
     echo -e "ip addr del $ip/$MASK dev $int " >> init_route.sh
+    echo -e 'echo add new ip from dev' >>init_route.sh
     echo -e "ip addr add $ip/$MASK dev $int " >> init_route.sh
     echo -e "ip link set dev $int up" >> init_route.sh
+    echo -e 'echo del old route dev rule from table' >>init_route.sh
     echo -e "ip rule del from $ip dev $int table $table" >> init_route.sh
+    echo -e 'echo  add route dev rule from table' >>init_route.sh
     echo -e "ip rule add from $ip dev $int table $table" >> init_route.sh
+    echo -e 'echo del old route rule from table' >>init_route.sh
     echo -e "ip rule del from $intip table $table " >> init_route.sh
+    echo -e 'echo add route rule from table' >>init_route.sh
     echo -e "ip rule add from $intip table $table " >> init_route.sh
-    echo -e "ip route del default via $DEF dev $int table $table ">> init_route.sh
-    echo -e "ip route add default via $DEF dev $int table $table ">> init_route.sh
+    echo -e 'echo del old route in table' >>init_route.sh
+    echo -e "ip route del default via $def dev $int table $table ">> init_route.sh
+    echo -e 'echo add route in table' >>init_route.sh
+    echo -e "ip route add default via $def dev $int table $table ">> init_route.sh
 #    echo -e "iptables -t nat -D POSTROUTING -o $int -j MASQUERADE">> init_route.sh
 #    echo -e "iptables -t nat -A POSTROUTING -o $int -j MASQUERADE">> init_route.sh
+    echo -e 'echo delete old  nat 1' >>init_route.sh
+
     echo -e "iptables -t nat -D POSTROUTING -s $intip -o $int -j SNAT --to-source $ip ">> init_route.sh
+    echo -e 'echo install nat 2' >>init_route.sh
     echo -e "iptables -t nat -A POSTROUTING -s $intip -o $int -j SNAT --to-source $ip ">> init_route.sh
 
     echo -e "ip addr del $ip/$MASK dev $int " >> del_route.sh
 
     echo -e "ip rule del from $ip/$MASK dev $int table $table" >> del_route.sh
     echo -e "ip rule del from $intip table $table " >> del_route.sh
-    echo -e "ip route del default via $DEF dev $int table $table ">> del_route.sh
+    echo -e "ip route del default via $def dev $int table $table ">> del_route.sh
 #    echo -e "iptables -t nat -D POSTROUTING -o $int -j MASQUERADE">> del_route.sh
     echo -e "iptables -t nat -D POSTROUTING -s $intip -o $int -j SNAT --to-source $ip ">> del_route.sh
 
