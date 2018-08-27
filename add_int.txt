@@ -1,4 +1,9 @@
 
+up addr add 188.120.246.128 dev ens3  
+up addr add 188.120.246.127 dev ens3  
+up addr add 188.120.246.126 dev ens3  
+up addr add 188.120.246.124 dev ens3  
+up addr add 188.120.246.121 dev ens3  
 up addr add 188.120.241.155 dev ens3  
 up addr add 188.120.241.154 dev ens3  
 up addr add 188.120.241.145 dev ens3  
@@ -11,5 +16,6 @@ up addr add 188.120.239.91 dev ens3
 up addr add 188.120.238.41 dev ens3  
 up addr add 188.120.233.16 dev ens3  
 up addr add 188.120.229.117 dev ens3  
+up addr add 188.120.227.150 dev ens3  
 up addr add 188.120.227.83 dev ens3  
 up addr add 188.120.225.133 dev ens3  
